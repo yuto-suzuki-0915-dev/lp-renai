@@ -1,36 +1,37 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# REN-AI LAB LP
 
-## Getting Started
+Figmaからコピーされたレイヤー情報を基に制作している、恋愛サポートサービスの静的LPです。
 
-First, run the development server:
+## Development
 
 ```bash
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+ブラウザで `http://localhost:3000` を開きます。
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+## Checks
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+```bash
+npm run lint
+npm run build
+```
 
-## Learn More
+## Structure
 
-To learn more about Next.js, take a look at the following resources:
+- `src/app/`: ページ、Metadata、グローバルスタイル
+- `src/components/sections/`: LP固有のSection
+- `src/components/ui/`: 共通CTA、見出し、Carousel、Header
+- `src/content/`: 仮コピーとカードデータ
+- `public/images/`: 採用済みの本番画像
+- `references/`: Figmaなどの参照情報
+- `work/`: 比較案と試作
+- `docs/`: 商品、構成、デザイン、参照方針
+- `asset-notes/`: 本番画像の用途と制約
+- `reference-notes/`: Sectionごとの参照意図
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+## Current limitations
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+- 掲載コピー、講師情報、実績はレイアウト確認用の仮内容です。
+- 元画像が未提供のため、FV、Voice、ProfileはCSSの仮ビジュアルを表示しています。
+- Contactフォームの送信機能は接続していません。

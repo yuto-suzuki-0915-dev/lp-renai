@@ -1,0 +1,17 @@
+.heading { width: min(100%, 760px); margin: 0 auto clamp(40px, 6vw, 68px); text-align: center; }
+.left { margin-inline: 0; text-align: left; }
+.eyebrow { display: flex; align-items: center; justify-content: center; gap: 16px; margin: 0 0 18px; color: var(--color-green); font-size: 13px; font-weight: 700; letter-spacing: 0.2em; }
+.left .eyebrow { justify-content: flex-start; }
+.eyebrow::before, .eyebrow::after { width: 54px; height: 2px; content: ""; background: linear-gradient(90deg, transparent, var(--color-teal)); }
+.eyebrow::after { transform: scaleX(-1); }
+.left .eyebrow::before { display: none; }
+.title { margin: 0; color: #fff; font-size: clamp(30px, 4.1vw, 48px); line-height: 1.45; letter-spacing: 0.05em; }
+.description { margin: 22px auto 0; color: rgb(200 222 200 / 80%); font-size: clamp(15px, 1.7vw, 18px); line-height: 2; letter-spacing: 0.05em; }
+.left .description { margin-inline: 0; }
+
+@media (max-width: 640px) {
+  .heading { margin-bottom: 36px; }
+  .eyebrow { margin-bottom: 12px; }
+  .title { line-height: 1.4; }
+  .description { margin-top: 16px; line-height: 1.85; }
+}

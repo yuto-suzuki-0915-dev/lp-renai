@@ -1,0 +1,21 @@
+.section { display: flex; flex-direction: column; align-items: center; padding: 72px var(--page-gutter) 86px; background: var(--color-bg); }
+.divider { width: min(100%, 1000px); height: 1px; margin-bottom: 45px; background: linear-gradient(90deg, transparent, var(--color-line), transparent); }
+.heading { display: flex; flex-direction: column; align-items: center; gap: 10px; margin-bottom: 38px; }
+.heading span { padding: 5px 20px; border-radius: 999px; background: var(--color-green-shade); color: white; font-family: var(--font-en); font-size: 10px; font-weight: 800; letter-spacing: .24em; }
+.heading h2 { margin: 0; font-size: 27px; letter-spacing: .04em; }
+.list { display: flex; width: min(100%, 820px); flex-direction: column; gap: 10px; }
+.item { overflow: hidden; border: 1px solid rgb(46 204 113 / 18%); border-radius: 10px; background: rgb(46 204 113 / 4%); }
+.item[open] { border-color: rgb(46 204 113 / 44%); background: rgb(46 204 113 / 7%); }
+.item summary { display: flex; align-items: center; gap: 13px; padding: 17px 21px; cursor: pointer; list-style: none; font-size: 14px; font-weight: 700; }
+.item summary::-webkit-details-marker { display: none; }
+.item summary strong, .answer > strong { min-width: 34px; color: var(--color-green-bright); font-family: var(--font-en); }
+.item summary span { flex: 1; }
+.item summary i { position: relative; width: 22px; height: 22px; border: 1px solid rgb(46 204 113 / 55%); border-radius: 50%; }
+.item summary i::before, .item summary i::after { position: absolute; top: 50%; left: 50%; width: 10px; height: 2px; border-radius: 2px; background: var(--color-green-bright); content: ""; transform: translate(-50%, -50%); }
+.item summary i::after { transform: translate(-50%, -50%) rotate(90deg); }
+.item[open] summary i { background: var(--color-green); }
+.item[open] summary i::after { opacity: 0; }
+.answer { display: flex; gap: 13px; margin: 0 21px; padding: 15px 0 19px; border-top: 1px dashed rgb(46 204 113 / 24%); color: var(--color-muted); font-size: 13px; line-height: 1.75; }
+.answer p { margin: 0; }
+.answer p + p { margin-top: 6px; }
+@media (max-width: 640px) { .item summary { padding-inline: 15px; font-size: 13px; } .answer { margin-inline: 15px; } }
