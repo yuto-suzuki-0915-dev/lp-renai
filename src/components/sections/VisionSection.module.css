@@ -1,0 +1,8 @@
+.section { display: flex; flex-direction: column; align-items: center; padding: 88px var(--page-gutter) 36px; background: var(--color-bg); }
+.stack { display: flex; flex-direction: column; align-items: center; gap: 20px; text-align: center; }
+.stack p, .stack h2 { margin: 0; padding: 12px 26px; border: 1px solid rgb(46 204 113 / 28%); background: rgb(10 31 10 / 82%); font-size: clamp(17px, 1.7vw, 22px); font-weight: 800; letter-spacing: .02em; }
+.stack p:nth-child(2) { color: var(--color-muted); }
+.stack h2 { padding: 15px 32px; border-color: rgb(46 204 113 / 50%); font-size: clamp(19px, 2vw, 26px); }
+.stack strong { color: var(--color-green-bright); }
+.line { width: 1px; height: 64px; margin-top: 54px; background: rgb(46 204 113 / 48%); }
+@media (max-width: 640px) { .stack { align-items: stretch; } .stack p, .stack h2 { padding-inline: 15px; } }

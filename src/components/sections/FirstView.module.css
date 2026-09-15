@@ -1,0 +1,27 @@
+.fv { position: relative; display: flex; min-height: 720px; align-items: center; justify-content: center; isolation: isolate; overflow: hidden; padding: 200px 20px 90px; }
+.image { z-index: -3; object-fit: cover; object-position: 60% center; }
+.overlay { position: absolute; z-index: -2; inset: 0; background: linear-gradient(180deg, rgb(10 31 10 / 15%) 0%, rgb(10 31 10 / 25%) 55%, rgb(10 31 10 / 68%) 100%), linear-gradient(90deg, rgb(10 31 10 / 40%) 0%, transparent 55%, rgb(10 31 10 / 13%) 100%); }
+.container { width: min(100%, 1000px); }
+.title { display: flex; flex-direction: column; align-items: flex-start; gap: 10px; margin: 0; }
+.title span { display: inline-block; padding: 9px 20px; border-left: 4px solid var(--color-green); background: var(--color-bg); font-size: clamp(28px, 3.2vw, 42px); font-weight: 900; line-height: 1.35; letter-spacing: .01em; }
+.subArea { display: flex; align-items: flex-end; justify-content: space-between; gap: 24px; margin-top: 34px; }
+.subCopy { display: flex; align-items: flex-start; gap: 16px; }
+.subCopy i { width: 64px; height: 2px; flex: 0 0 auto; margin-top: 18px; background: white; }
+.subCopy p { position: relative; margin: 0; color: white; font-size: clamp(15px, 1.5vw, 19px); font-weight: 600; line-height: 1.7; text-shadow: 0 2px 12px rgb(0 0 0 / 65%); }
+.subCopy p::after { position: absolute; z-index: -1; bottom: 4px; left: 0; width: 200px; height: 9px; content: ""; background: rgb(76 229 0 / 35%); }
+.badge { flex: 0 0 auto; padding: 6px 18px; border-radius: 4px; background: rgb(255 255 255 / 92%); color: var(--color-bg); font-size: 12px; font-weight: 900; letter-spacing: .1em; }
+.ctaArea { position: relative; width: min(100%, 520px); margin-top: 50px; padding-top: 12px; }
+.ctaArea > span { position: absolute; z-index: 2; top: -4px; left: 50%; padding: 6px 18px; border-radius: 999px; background: white; box-shadow: 0 6px 14px -8px rgb(0 0 0 / 45%); color: #214821; font-size: 12px; font-weight: 900; letter-spacing: .04em; white-space: nowrap; transform: translateX(-50%); }
+@media (max-width: 700px) {
+  .fv { min-height: 720px; align-items: flex-start; padding: 150px 20px 48px; }
+  .image { object-position: 62% center; }
+  .overlay { background: linear-gradient(180deg, rgb(10 31 10 / 72%) 4%, rgb(10 31 10 / 48%) 54%, rgb(10 31 10 / 94%) 100%); }
+  .title { gap: 7px; }
+  .title span { max-width: 100%; padding: 7px 11px; border-left-width: 3px; font-size: clamp(21px, 6.3vw, 28px); }
+  .subArea { align-items: flex-start; margin-top: 28px; }
+  .subCopy { gap: 10px; }
+  .subCopy i { width: 28px; margin-top: 14px; }
+  .subCopy p { font-size: 13px; }
+  .badge { align-self: flex-end; padding: 5px 9px; font-size: 9px; }
+  .ctaArea { margin-top: 46px; }
+}

@@ -1,0 +1,6 @@
+.cta { position: relative; display: inline-flex; width: min(100%, 520px); min-height: 72px; align-items: center; justify-content: center; padding: 18px 42px; border: 0; border-radius: 9px; background: var(--color-green); box-shadow: 0 14px 32px -14px rgb(46 204 113 / 72%), inset 0 -3px 0 rgb(0 0 0 / 22%); color: white; font-size: clamp(17px, 1.6vw, 21px); font-weight: 900; letter-spacing: .04em; transition: transform .18s ease, filter .18s ease; }
+.cta:hover, .cta:focus-visible { filter: brightness(1.06); transform: translateY(-2px); }
+.cta:focus-visible { outline: 3px solid white; outline-offset: 4px; }
+.arrow { position: absolute; right: 22px; font-size: 1.45em; line-height: 1; }
+.compact { width: auto; min-width: 180px; min-height: 48px; padding: 10px 20px; font-size: 13px; }
+@media (max-width: 640px) { .cta { min-height: 62px; padding-inline: 28px; } }

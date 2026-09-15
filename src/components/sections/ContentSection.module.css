@@ -1,0 +1,16 @@
+.section { padding: 78px var(--page-gutter) 88px; background: linear-gradient(180deg, rgb(16 173 75 / 18%), rgb(16 173 75 / 8%)); }
+.inner { width: min(100%, 1040px); margin: 0 auto; }
+.heading { position: relative; width: min(100%, 560px); margin: 0 auto 54px; padding: 34px 20px 54px; text-align: center; }
+.heading::before { position: absolute; inset: 0; background: radial-gradient(ellipse 80% 70% at 50% 40%, rgb(46 204 113 / 20%), transparent 70%); content: ""; }
+.heading p { position: relative; display: inline-block; margin: 0 0 20px; padding: 5px 20px; border-radius: 999px; background: var(--color-green-shade); font-size: 12px; font-weight: 800; letter-spacing: .08em; }
+.heading h2 { position: relative; margin: 0; font-size: clamp(23px, 2.2vw, 28px); line-height: 1.5; }
+.heading span { position: absolute; bottom: 16px; left: 50%; border-top: 12px solid var(--color-green-bright); border-right: 10px solid transparent; border-left: 10px solid transparent; transform: translateX(-50%); }
+.card { position: relative; flex: 0 0 calc((100% - 20px) / 2); min-width: 390px; min-height: 160px; padding: 35px 23px 20px; border: 1px solid rgb(46 204 113 / 18%); border-radius: 7px; background: var(--color-bg); scroll-snap-align: start; }
+.tag { position: absolute; top: -11px; left: 17px; padding: 3px 11px; border: 1px solid rgb(46 204 113 / 38%); border-radius: 999px; background: var(--color-bg); font-family: var(--font-en); font-size: 9px; font-weight: 800; letter-spacing: .16em; }
+.card h3 { margin: 0 0 10px; color: #2acb74; font-size: 17px; }
+.card div { color: rgb(255 255 255 / 78%); font-size: 12px; line-height: 1.75; }
+.card p { margin: 0; }
+.footer { display: flex; align-items: center; justify-content: center; gap: 5px; margin: 34px 0 0; text-align: center; font-size: 17px; font-weight: 800; }
+.footer::before, .footer::after { width: 80px; height: 1px; margin-inline: 18px; background: var(--color-line); content: ""; }
+.footer strong { color: var(--color-green-bright); font-size: 20px; }
+@media (max-width: 640px) { .card { flex-basis: 88%; min-width: 0; min-height: 180px; } .footer { display: block; line-height: 1.8; } .footer::before, .footer::after { display: none; } }

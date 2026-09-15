@@ -1,0 +1,15 @@
+.section { display: flex; flex-direction: column; align-items: center; padding: 78px var(--page-gutter) 96px; background: var(--color-bg); }
+.heading { position: relative; width: min(100%, 560px); margin-bottom: 54px; padding: 34px 20px 54px; text-align: center; }
+.heading::before { position: absolute; inset: 0; background: radial-gradient(ellipse 80% 70% at 50% 40%, rgb(46 204 113 / 20%), transparent 70%); content: ""; }
+.heading p { position: relative; display: inline-block; margin: 0 0 20px; padding: 5px 20px; border-radius: 999px; background: var(--color-green-shade); font-size: 12px; font-weight: 800; letter-spacing: .08em; }
+.heading h2 { position: relative; margin: 0; font-size: clamp(23px, 2.2vw, 28px); line-height: 1.5; }
+.heading span { position: absolute; bottom: 16px; left: 50%; border-top: 12px solid var(--color-green-bright); border-right: 10px solid transparent; border-left: 10px solid transparent; transform: translateX(-50%); }
+.list { display: flex; width: min(100%, 780px); flex-direction: column; gap: 26px; }
+.card { position: relative; padding: 28px 30px 25px; border: 1px solid rgb(29 185 84 / 18%); border-radius: 9px; background: rgb(29 185 84 / 5%); }
+.tag { position: absolute; top: -13px; left: 22px; padding: 3px 13px; border: 1px solid rgb(46 204 113 / 48%); border-radius: 999px; background: var(--color-bg); font-family: var(--font-en); font-size: 10px; font-weight: 800; letter-spacing: .12em; }
+.card h3 { margin: 0 0 10px; color: white; font-size: clamp(18px, 1.7vw, 22px); }
+.card h3 strong { color: var(--color-green-bright); text-decoration: underline; text-decoration-thickness: 2px; text-underline-offset: 3px; }
+.description { color: var(--color-muted); font-size: 13px; line-height: 1.8; }
+.description p { margin: 0; }
+.description p:last-child { color: #b9f1cf; }
+@media (max-width: 640px) { .card { padding: 27px 20px 22px; } .description p + p { margin-top: 5px; } }

@@ -1,0 +1,12 @@
+.carousel { position: relative; }
+.viewport { display: flex; align-items: stretch; gap: 20px; overflow-x: auto; padding: 8px 4px 24px; scroll-behavior: smooth; scroll-snap-type: x mandatory; scrollbar-color: rgb(46 204 113 / 52%) rgb(255 255 255 / 6%); scrollbar-width: thin; }
+.viewport:focus-visible { outline: 2px solid var(--color-green-bright); outline-offset: 7px; border-radius: 4px; }
+.controls { pointer-events: none; position: absolute; z-index: 5; inset: 0 -10px 24px; display: flex; align-items: center; justify-content: space-between; }
+.controls button { pointer-events: auto; display: grid; width: 42px; height: 42px; place-items: center; border: 1px solid rgb(46 204 113 / 45%); border-radius: 50%; background: rgb(10 31 10 / 88%); color: white; cursor: pointer; font-size: 19px; box-shadow: 0 8px 22px rgb(0 0 0 / 24%); transition: background .18s ease, transform .18s ease, opacity .18s ease; }
+.controls button:hover:not(:disabled), .controls button:focus-visible { background: var(--color-green); transform: scale(1.06); }
+.controls button:focus-visible { outline: 2px solid white; outline-offset: 3px; }
+.controls button:disabled { opacity: .24; }
+.progress { display: flex; align-items: baseline; justify-content: flex-end; gap: 4px; margin: 5px 4px 0; color: white; font-family: var(--font-en); font-size: 11px; font-weight: 800; letter-spacing: .08em; }
+.progress i { color: var(--color-green-bright); font-style: normal; }
+.progress small { margin-left: 2px; color: var(--color-faint); font-size: 9px; font-weight: 700; }
+@media (max-width: 640px) { .viewport { gap: 14px; } .controls { inset-inline: -2px; } .controls button { width: 36px; height: 36px; } .progress { margin-right: 2px; } }
