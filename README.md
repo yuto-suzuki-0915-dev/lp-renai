@@ -10,6 +10,29 @@ npm run dev
 
 ブラウザで `http://localhost:3000` を開きます。
 
+## Supabase booking setup
+
+予約機能はSupabase PostgreSQLとSupabase Authを使用します。
+
+1. `.env.example`を参考に`.env.local`を作成します。
+2. `ADMIN_EMAILS`に管理者として許可するメールアドレスをカンマ区切りで設定します。
+3. Supabase DashboardのAuthenticationから同じメールアドレスのユーザーを作成します。
+4. 本番環境では一般ユーザーのSign Upを無効にします。
+5. マイグレーションを反映します。
+
+```bash
+npx supabase db push --linked
+```
+
+ローカルのSupabaseを使用する場合は、`supabase/seed.sql`によって翌日のテスト枠が3件作成されます。
+
+```bash
+npx supabase start
+npx supabase db reset
+```
+
+管理画面は `http://localhost:3000/admin` です。
+
 ## Checks
 
 ```bash
@@ -34,4 +57,4 @@ npm run build
 
 - 掲載コピー、講師情報、実績はレイアウト確認用の仮内容です。
 - 元画像が未提供のため、FV、Voice、ProfileはCSSの仮ビジュアルを表示しています。
-- Contactフォームの送信機能は接続していません。
+- 予約完了メールと利用者自身によるキャンセル機能は未実装です。

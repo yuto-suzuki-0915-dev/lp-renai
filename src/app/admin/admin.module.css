@@ -1,0 +1,153 @@
+.shell {
+  min-height: 100vh;
+  padding: 48px max(20px, calc((100vw - 1100px) / 2));
+  background: #07100c;
+  color: #f5f7f6;
+}
+
+.header,
+.panelHeading,
+.actions {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+}
+
+.header { margin-bottom: 32px; }
+.header h1,
+.panel h2,
+.loginCard h1 { margin: 0; }
+.header p { margin: 6px 0 0; color: #9eaaa4; }
+.eyebrow { margin: 0 0 5px !important; color: #2ecc71 !important; font-size: 11px; font-weight: 800; letter-spacing: .18em; }
+
+.panel,
+.loginCard {
+  margin-bottom: 22px;
+  padding: 24px;
+  border: 1px solid rgb(255 255 255 / 10%);
+  border-radius: 12px;
+  background: rgb(255 255 255 / 4%);
+}
+
+.panel > p { color: #9eaaa4; font-size: 13px; }
+.panelHeading span { color: #9eaaa4; font-size: 12px; }
+.searchForm { display: flex; gap: 8px; margin-top: 18px; }
+.searchForm input {
+  min-width: 0;
+  flex: 1;
+  min-height: 40px;
+  padding: 9px 11px;
+  border: 1px solid rgb(255 255 255 / 15%);
+  border-radius: 6px;
+  background: #030806;
+  color: white;
+}
+.searchForm a { align-self: center; color: #a7b2ac; font-size: 12px; }
+
+.slotCreator {
+  display: grid;
+  grid-template-columns: 1.4fr 1fr 1fr auto;
+  gap: 12px;
+  align-items: end;
+  margin-top: 20px;
+}
+
+.slotCreator label,
+.loginForm label { display: flex; flex-direction: column; gap: 6px; }
+.slotCreator label span,
+.loginForm label span { color: #b5c0ba; font-size: 11px; font-weight: 700; }
+.slotCreator input,
+.loginForm input {
+  min-height: 44px;
+  padding: 9px 11px;
+  border: 1px solid rgb(255 255 255 / 15%);
+  border-radius: 6px;
+  background: #030806;
+  color: white;
+}
+
+.slotCreator button,
+.loginForm button {
+  min-height: 44px;
+  padding: 0 18px;
+  border: 0;
+  border-radius: 7px;
+  background: #2ecc71;
+  color: white;
+  font-weight: 800;
+  cursor: pointer;
+}
+
+.slotCreator button:disabled,
+.loginForm button:disabled { cursor: wait; opacity: .65; }
+.slotCreator .error,
+.slotCreator .success { grid-column: 1 / -1; }
+.error { color: #ff9c9c !important; }
+.success { color: #75e8a6 !important; }
+.empty { padding: 24px 0; text-align: center; }
+
+.slotList { display: grid; gap: 10px; margin-top: 18px; }
+.slotCard {
+  display: grid;
+  grid-template-columns: minmax(180px, 1fr) auto minmax(220px, 1.3fr) auto;
+  gap: 18px;
+  align-items: center;
+  padding: 16px;
+  border: 1px solid rgb(255 255 255 / 8%);
+  border-radius: 8px;
+  background: rgb(0 0 0 / 20%);
+}
+
+.slotDate,
+.bookingDetails { display: flex; flex-direction: column; gap: 4px; }
+.slotDate span,
+.bookingDetails a,
+.bookingDetails small { color: #a7b2ac; font-size: 12px; }
+.bookingDetails a { overflow-wrap: anywhere; }
+.open,
+.reserved,
+.closed { padding: 5px 9px; border-radius: 999px; font-size: 11px; font-weight: 800; }
+.open { background: rgb(46 204 113 / 15%); color: #64dd98; }
+.reserved { background: rgb(255 193 7 / 14%); color: #ffd45e; }
+.closed { background: rgb(255 255 255 / 8%); color: #a7b2ac; }
+.actions { justify-content: flex-end; }
+
+.secondaryButton,
+.dangerButton {
+  min-height: 36px;
+  padding: 0 12px;
+  border: 1px solid rgb(255 255 255 / 14%);
+  border-radius: 6px;
+  background: transparent;
+  color: white;
+  cursor: pointer;
+}
+.dangerButton { border-color: rgb(255 94 94 / 30%); color: #ffabab; }
+
+.loginCard { width: min(100%, 440px); margin: 10vh auto 0; }
+.loginForm { display: grid; gap: 18px; margin-top: 24px; }
+.backLink { display: inline-block; margin-top: 20px; color: #a7b2ac; font-size: 12px; }
+
+@media (max-width: 900px) {
+  .slotCreator { grid-template-columns: 1fr 1fr; }
+  .slotCreator label:first-child,
+  .slotCreator button { grid-column: 1 / -1; }
+  .slotCard { grid-template-columns: 1fr auto; }
+  .bookingDetails,
+  .actions { grid-column: 1 / -1; }
+}
+
+@media (max-width: 560px) {
+  .shell { padding-block: 28px; }
+  .header { align-items: flex-start; }
+  .slotCreator { grid-template-columns: 1fr; }
+  .slotCreator label:first-child,
+  .slotCreator button { grid-column: auto; }
+  .slotCard { grid-template-columns: 1fr; }
+  .slotStatus,
+  .bookingDetails,
+  .actions { grid-column: auto; }
+  .actions { align-items: stretch; flex-direction: column; }
+  .actions button { width: 100%; }
+}
