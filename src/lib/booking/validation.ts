@@ -23,9 +23,6 @@ export function validateBookingRequest(
   const email = typeof request.email === "string" ? request.email.trim().toLowerCase() : "";
   const slotId = typeof request.slotId === "string" ? request.slotId : "";
 
-  if (typeof request.website === "string" && request.website.trim()) {
-    return { success: false, error: "予約を受け付けられませんでした。" };
-  }
   if (!name || name.length > 80) {
     return { success: false, error: "お名前は80文字以内で入力してください。" };
   }

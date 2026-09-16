@@ -21,5 +21,4 @@ export type BookingRequest = {
   name: string;
   email: string;
   slotId: string;
-  website?: string;
 };
