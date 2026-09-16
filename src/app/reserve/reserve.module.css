@@ -1,0 +1,90 @@
+.page {
+  min-height: 100vh;
+  margin-top: 0;
+  padding: 28px var(--page-gutter) 72px;
+  background:
+    radial-gradient(circle at 50% -10%, rgb(46 204 113 / 18%), transparent 34%),
+    var(--color-bg);
+}
+.header { display: flex; width: min(100%, 980px); margin: 0 auto; align-items: center; justify-content: space-between; }
+.logo { color: var(--color-green); font-family: var(--font-en); font-size: 20px; font-weight: 900; letter-spacing: .06em; }
+.backLink { color: var(--color-muted); font-size: 12px; }
+.intro { width: min(100%, 760px); margin: 72px auto 30px; text-align: center; }
+.intro h1 { margin: 6px 0 12px; font-size: clamp(28px, 5vw, 46px); }
+.intro > p:last-child { margin: 0; color: var(--color-muted); font-size: 13px; }
+.eyebrow { margin: 0; color: var(--color-green); font-family: var(--font-en); font-size: 11px; font-weight: 900; letter-spacing: .2em; }
+.flow { width: min(100%, 1120px); margin: 0 auto; }
+.steps { display: grid; grid-template-columns: repeat(4, 1fr); gap: 8px; margin: 0 0 16px; padding: 0; list-style: none; }
+.steps li { display: flex; min-height: 46px; align-items: center; justify-content: center; gap: 7px; border-bottom: 2px solid rgb(255 255 255 / 10%); color: var(--color-faint); font-size: 10px; font-weight: 800; }
+.steps li span { display: grid; width: 19px; height: 19px; place-items: center; border: 1px solid currentColor; border-radius: 50%; font-size: 9px; }
+.steps .currentStep { border-color: var(--color-green); color: white; }
+.steps .completedStep { border-color: rgb(46 204 113 / 30%); color: #78dba1; }
+.stepPanel { display: flex; flex-direction: column; gap: 20px; min-height: 390px; padding: clamp(22px, 4vw, 38px); border: 1px solid rgb(255 255 255 / 11%); border-radius: 12px; background: rgb(255 255 255 / 3.5%); box-shadow: 0 24px 70px rgb(0 0 0 / 22%); }
+.narrowPanel { width: min(100%, 760px); margin-inline: auto; }
+.stepHeading { text-align: center; }
+.stepHeading p { margin: 0 0 6px; color: var(--color-green); font-size: 10px; font-weight: 900; letter-spacing: .14em; }
+.stepHeading h2 { margin: 0 0 7px; font-size: clamp(19px, 3vw, 24px); }
+.stepHeading span { color: var(--color-muted); font-size: 12px; }
+.publicCalendar { display: grid; gap: 12px; }
+.calendarToolbar { display: grid; grid-template-columns: auto 1fr auto; align-items: center; gap: 12px; }
+.calendarToolbar strong { text-align: center; font-size: 13px; }
+.calendarToolbar button { min-height: 36px; padding: 0 12px; border: 1px solid rgb(255 255 255 / 14%); border-radius: 6px; background: transparent; color: white; font-size: 11px; cursor: pointer; }
+.calendarToolbar button:disabled { cursor: not-allowed; opacity: .38; }
+.calendarLegend { display: flex; justify-content: flex-end; gap: 14px; color: var(--color-muted); font-size: 10px; }
+.calendarLegend span { display: inline-flex; align-items: center; gap: 5px; }
+.calendarLegend i { width: 10px; height: 10px; border-radius: 3px; }
+.legendAvailable { background: #1d8a4b; }
+.legendUnavailable { background: #303834; }
+.publicCalendarScroller { overflow-x: auto; padding-bottom: 5px; }
+.publicCalendarGrid { display: grid; grid-template-columns: 66px repeat(7, minmax(96px, 1fr)); min-width: 760px; gap: 4px; }
+.calendarCorner,
+.calendarDate,
+.calendarHour,
+.calendarUnavailable { display: grid; min-height: 48px; place-items: center; border-radius: 6px; background: rgb(0 0 0 / 23%); color: var(--color-faint); font-size: 10px; }
+.calendarDate { color: white; font-size: 11px; font-weight: 800; }
+.calendarHour,
+.calendarUnavailable,
+.calendarAvailable { min-height: 54px; }
+.calendarAvailable { border: 1px solid rgb(46 204 113 / 50%); border-radius: 6px; background: rgb(46 204 113 / 13%); color: #75e8a6; font-size: 11px; font-weight: 900; cursor: pointer; }
+.calendarAvailable:hover,
+.calendarAvailable:focus-visible { border-color: var(--color-green); background: rgb(46 204 113 / 24%); }
+.calendarUnavailable { background: rgb(255 255 255 / 4%); color: rgb(255 255 255 / 28%); }
+.empty { margin: auto 0; padding: 30px 12px; border: 1px dashed rgb(255 255 255 / 13%); border-radius: 7px; color: var(--color-muted); text-align: center; }
+.privacyNote { margin: 0; color: var(--color-faint); text-align: center; font-size: 10px; }
+.selectedSummary { display: grid; gap: 5px; padding: 14px 16px; border: 1px solid rgb(46 204 113 / 25%); border-radius: 8px; background: rgb(46 204 113 / 6%); }
+.selectedSummary span { color: var(--color-faint); font-size: 10px; font-weight: 800; }
+.selectedSummary strong { font-size: 13px; }
+.selectedSummary button { justify-self: start; padding: 0; border: 0; background: transparent; color: #8fe5b3; font-size: 11px; text-decoration: underline; cursor: pointer; }
+.detailsForm { display: grid; gap: 17px; }
+.detailsForm label { display: flex; flex-direction: column; gap: 6px; }
+.detailsForm label span { color: #b8c4bd; font-size: 11px; font-weight: 800; }
+.detailsForm input { min-height: 48px; padding: 11px 13px; border: 1px solid rgb(255 255 255 / 14%); border-radius: 6px; outline: 0; background: rgb(0 0 0 / 28%); color: white; }
+.detailsForm input:focus { border-color: var(--color-green); background: rgb(46 204 113 / 6%); }
+.detailsForm > button,
+.primaryButton { position: relative; min-height: 58px; border: 0; border-radius: 8px; background: var(--color-green); box-shadow: 0 12px 28px -14px rgb(46 204 113 / 72%); color: white; font-size: 15px; font-weight: 900; cursor: pointer; }
+.detailsForm > button span,
+.primaryButton span { position: absolute; right: 20px; font-size: 22px; }
+.primaryButton:disabled { cursor: wait; opacity: .65; }
+.honeypot { position: absolute !important; left: -9999px !important; width: 1px !important; height: 1px !important; overflow: hidden !important; }
+.confirmationList { display: grid; gap: 1px; margin: 0; overflow: hidden; border-radius: 8px; background: rgb(255 255 255 / 8%); }
+.confirmationList div { display: grid; grid-template-columns: 100px 1fr; gap: 14px; padding: 14px; background: var(--color-bg); }
+.confirmationList dt { color: var(--color-faint); font-size: 11px; font-weight: 800; }
+.confirmationList dd { min-width: 0; margin: 0; overflow-wrap: anywhere; font-size: 12px; }
+.textButton { align-self: center; padding: 3px; border: 0; background: transparent; color: #8fe5b3; font-size: 11px; text-decoration: underline; cursor: pointer; }
+.complete { align-items: center; justify-content: center; text-align: center; }
+.complete h2 { margin: 0; font-size: 18px; }
+.complete > p { margin: 0; color: var(--color-muted); font-size: 12px; }
+.status { width: 100%; padding: 13px; border: 1px solid rgb(46 204 113 / 42%); border-radius: 6px; outline: none; background: rgb(46 204 113 / 8%); color: white !important; font-weight: 800; }
+.code { padding: 10px 16px; border-radius: 6px; background: rgb(255 255 255 / 8%); font-family: ui-monospace, SFMono-Regular, Consolas, monospace; font-size: 20px; letter-spacing: .12em; }
+.error { width: min(100%, 760px); margin: 12px auto 0; padding: 11px 13px; border: 1px solid rgb(255 95 95 / 35%); border-radius: 6px; background: rgb(255 95 95 / 7%); color: #ffb3b3; text-align: center; font-size: 11px; }
+
+@media (max-width: 640px) {
+  .page { padding-inline: 16px; }
+  .intro { margin-top: 52px; }
+  .steps { gap: 3px; }
+  .steps li { flex-direction: column; gap: 3px; font-size: 9px; }
+  .stepPanel { padding: 20px 16px; }
+  .calendarToolbar { grid-template-columns: 1fr 1fr; }
+  .calendarToolbar strong { grid-column: 1 / -1; grid-row: 1; }
+  .confirmationList div { grid-template-columns: 76px 1fr; }
+}

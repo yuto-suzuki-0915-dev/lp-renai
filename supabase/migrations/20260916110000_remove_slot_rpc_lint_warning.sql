@@ -1,0 +1,36 @@
+CREATE OR REPLACE FUNCTION public.set_slot_availability(
+  p_slot_id uuid,
+  p_is_open boolean
+)
+RETURNS text
+LANGUAGE plpgsql
+SECURITY DEFINER
+SET search_path = public, pg_temp
+AS $$
+BEGIN
+  PERFORM id
+  FROM public.availability_slots
+  WHERE id = p_slot_id
+  FOR UPDATE;
+
+  IF NOT FOUND THEN
+    RETURN 'not_found';
+  END IF;
+
+  IF NOT p_is_open AND EXISTS (
+    SELECT 1
+    FROM public.bookings
+    WHERE slot_id = p_slot_id
+      AND status = 'confirmed'
+  ) THEN
+    RETURN 'booked';
+  END IF;
+
+  UPDATE public.availability_slots
+  SET is_open = p_is_open,
+      updated_at = now()
+  WHERE id = p_slot_id;
+
+  RETURN 'updated';
+END;
+$$;

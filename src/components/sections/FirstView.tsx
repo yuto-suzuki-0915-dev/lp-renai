@@ -18,7 +18,7 @@ export default function FirstView() {
         </div>
         <div className={styles.ctaArea}>
           <span>登録・料金は一切不要です</span>
-          <CtaLink href="#contact">可能性を確かめる</CtaLink>
+          <CtaLink href="/reserve">可能性を確かめる</CtaLink>
         </div>
       </div>
     </section>

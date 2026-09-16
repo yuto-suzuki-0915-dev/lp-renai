@@ -26,7 +26,7 @@ export default function MiddleCtaSection() {
       <div className={styles.action}>
         <p>だから人生を変えることができる。</p>
         <h2>あなたにも変えてほしい</h2>
-        <CtaLink href="#contact">無料面談を申し込む</CtaLink>
+        <CtaLink href="/reserve">無料面談を申し込む</CtaLink>
       </div>
     </section>
   );
