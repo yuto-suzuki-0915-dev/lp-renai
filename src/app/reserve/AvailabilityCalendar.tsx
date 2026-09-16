@@ -70,11 +70,16 @@ export default function AvailabilityCalendar({
 
     return {
       slotMap: mapped,
-      startHour: schedule?.startHour ?? (hours.length ? Math.min(...hours) : 10),
-      endHour: schedule?.endHour ?? (hours.length ? Math.max(...hours) + 1 : 20),
-      lastWeekIndex: schedule
-        ? Math.max(0, schedule.horizonWeeks - 1)
-        : weeksBetween(currentWeekStart, getMondayDateKey(latestDateKey)),
+      startHour: hours.length
+        ? Math.min(schedule?.startHour ?? 24, ...hours)
+        : schedule?.startHour ?? 10,
+      endHour: hours.length
+        ? Math.max(schedule?.endHour ?? 0, Math.max(...hours) + 1)
+        : schedule?.endHour ?? 20,
+      lastWeekIndex: Math.max(
+        schedule ? schedule.horizonWeeks - 1 : 0,
+        weeksBetween(currentWeekStart, getMondayDateKey(latestDateKey)),
+      ),
     };
   }, [currentWeekStart, schedule, slots]);
 

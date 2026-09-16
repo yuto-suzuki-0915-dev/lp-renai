@@ -65,7 +65,7 @@ export default async function AdminPage({ searchParams }: AdminPageProps) {
     horizonWeeks: settings?.horizon_weeks ?? 8,
   };
   const weekStart = getMondayDateKey(getJstDateKey());
-  const rangeEnd = addDaysToDateKey(weekStart, effectiveSettings.horizonWeeks * 7);
+  const rangeEnd = addDaysToDateKey(weekStart, 9 * 7);
 
   const [{ data: slots, error: slotsError }, { data: bookings, error: bookingsError }] =
     await Promise.all([

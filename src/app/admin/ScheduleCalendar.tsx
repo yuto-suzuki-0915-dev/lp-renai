@@ -40,6 +40,20 @@ function getSlotKey(startsAt: string) {
   return `${value("year")}-${value("month")}-${value("day")}-${value("hour")}`;
 }
 
+function getSlotParts(startsAt: string) {
+  const key = getSlotKey(startsAt);
+  return {
+    dateKey: key.slice(0, 10),
+    hour: Number(key.slice(11, 13)),
+  };
+}
+
+function weeksBetween(startDateKey: string, endDateKey: string) {
+  const start = new Date(`${startDateKey}T12:00:00Z`).getTime();
+  const end = new Date(`${endDateKey}T12:00:00Z`).getTime();
+  return Math.max(0, Math.floor((end - start) / (7 * 24 * 60 * 60 * 1000)));
+}
+
 function formatDateKey(dateKey: string) {
   return dateLabelFormatter.format(new Date(`${dateKey}T12:00:00+09:00`));
 }
@@ -66,13 +80,34 @@ export default function ScheduleCalendar({
       current.map((item) => item.id === update.id ? { ...item, isOpen: update.isOpen } : item),
   );
 
-  const slotMap = useMemo(
-    () => new Map(slots.map((slot) => [getSlotKey(slot.startsAt), slot])),
-    [slots],
-  );
+  const { slotMap, visibleStartHour, visibleEndHour, lastWeekIndex } = useMemo(() => {
+    const mapped = new Map<string, AdminCalendarSlot>();
+    const hours: number[] = [];
+    let latestDateKey = rangeStartDate;
+
+    for (const slot of slots) {
+      const { dateKey, hour } = getSlotParts(slot.startsAt);
+      mapped.set(getSlotKey(slot.startsAt), slot);
+      hours.push(hour);
+      if (dateKey > latestDateKey) latestDateKey = dateKey;
+    }
+
+    return {
+      slotMap: mapped,
+      visibleStartHour: hours.length ? Math.min(startHour, ...hours) : startHour,
+      visibleEndHour: hours.length ? Math.max(endHour, Math.max(...hours) + 1) : endHour,
+      lastWeekIndex: Math.max(
+        horizonWeeks - 1,
+        weeksBetween(rangeStartDate, latestDateKey),
+      ),
+    };
+  }, [endHour, horizonWeeks, rangeStartDate, slots, startHour]);
   const weekStart = addDaysToDateKey(rangeStartDate, weekIndex * 7);
   const dates = Array.from({ length: 7 }, (_, index) => addDaysToDateKey(weekStart, index));
-  const hours = Array.from({ length: endHour - startHour }, (_, index) => startHour + index);
+  const hours = Array.from(
+    { length: visibleEndHour - visibleStartHour },
+    (_, index) => visibleStartHour + index,
+  );
 
   function toggleSlot(slot: AdminCalendarSlot) {
     if (slot.booking || new Date(slot.startsAt) <= new Date() || pending) return;
@@ -105,8 +140,8 @@ export default function ScheduleCalendar({
         <button
           type="button"
           className={styles.secondaryButton}
-          disabled={weekIndex >= horizonWeeks - 1 || pending}
-          onClick={() => setWeekIndex((current) => Math.min(horizonWeeks - 1, current + 1))}
+          disabled={weekIndex >= lastWeekIndex || pending}
+          onClick={() => setWeekIndex((current) => Math.min(lastWeekIndex, current + 1))}
         >
           次の週
         </button>
