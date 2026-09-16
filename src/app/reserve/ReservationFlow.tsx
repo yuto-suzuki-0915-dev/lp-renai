@@ -39,7 +39,6 @@ export default function ReservationFlow() {
   const [selectedSlot, setSelectedSlot] = useState<AvailabilitySlot | null>(null);
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
-  const [website, setWebsite] = useState("");
   const [confirmation, setConfirmation] = useState<BookingConfirmation | null>(null);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState("");
@@ -84,8 +83,6 @@ export default function ReservationFlow() {
       event.currentTarget.reportValidity();
       return;
     }
-    const formData = new FormData(event.currentTarget);
-    setWebsite(String(formData.get("website") || ""));
     setError("");
     setStep("confirm");
   }
@@ -99,7 +96,7 @@ export default function ReservationFlow() {
       const response = await fetch("/api/bookings", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ name, email, slotId: selectedSlot.id, website }),
+        body: JSON.stringify({ name, email, slotId: selectedSlot.id }),
       });
       const result = (await response.json()) as { booking?: BookingConfirmation; error?: string };
 
@@ -196,10 +193,6 @@ export default function ReservationFlow() {
                 maxLength={254}
                 required
               />
-            </label>
-            <label className={styles.honeypot} aria-hidden="true">
-              <span>ウェブサイト</span>
-              <input name="website" type="text" tabIndex={-1} autoComplete="off" />
             </label>
             <button type="submit">予約内容を確認する<span aria-hidden="true">›</span></button>
           </form>

@@ -65,7 +65,6 @@
 .detailsForm > button span,
 .primaryButton span { position: absolute; right: 20px; font-size: 22px; }
 .primaryButton:disabled { cursor: wait; opacity: .65; }
-.honeypot { position: absolute !important; left: -9999px !important; width: 1px !important; height: 1px !important; overflow: hidden !important; }
 .confirmationList { display: grid; gap: 1px; margin: 0; overflow: hidden; border-radius: 8px; background: rgb(255 255 255 / 8%); }
 .confirmationList div { display: grid; grid-template-columns: 100px 1fr; gap: 14px; padding: 14px; background: var(--color-bg); }
 .confirmationList dt { color: var(--color-faint); font-size: 11px; font-weight: 800; }
