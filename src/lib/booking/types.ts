@@ -4,6 +4,12 @@ export type AvailabilitySlot = {
   endsAt: string;
 };
 
+export type AvailabilitySchedule = {
+  startHour: number;
+  endHour: number;
+  horizonWeeks: number;
+};
+
 export type BookingConfirmation = {
   bookingId: string;
   confirmationCode: string;

@@ -1,4 +1,4 @@
-import ContactSection from "@/components/sections/ContactSection";
+import ReservationSection from "@/components/sections/ReservationSection";
 import ContentSection from "@/components/sections/ContentSection";
 import FirstView from "@/components/sections/FirstView";
 import FaqSection from "@/components/sections/FaqSection";
@@ -23,7 +23,7 @@ export default function Home() {
         <VisionSection />
         <ProfileSection />
         <FaqSection />
-        <ContactSection />
+        <ReservationSection />
       </main>
     </div>
   );

@@ -12,7 +12,7 @@ export default function SiteHeader() {
           <nav className={styles.nav} aria-label="ページ内メニュー">
             {navItems.map((item) => <a key={item.href} href={item.href}><span>{item.en}</span><small>{item.ja}</small></a>)}
           </nav>
-          <a className={styles.join} href="#contact">無料面談に参加</a>
+          <a className={styles.join} href="/reserve">無料面談に参加</a>
         </div>
       </div>
     </header>

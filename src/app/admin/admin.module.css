@@ -1,6 +1,7 @@
 .shell {
   min-height: 100vh;
-  padding: 48px max(20px, calc((100vw - 1100px) / 2));
+  margin-top: 0;
+  padding: 48px max(20px, calc((100vw - 1180px) / 2));
   background: #07100c;
   color: #f5f7f6;
 }
@@ -30,8 +31,9 @@
   background: rgb(255 255 255 / 4%);
 }
 
-.panel > p { color: #9eaaa4; font-size: 13px; }
-.panelHeading span { color: #9eaaa4; font-size: 12px; }
+.panel > p,
+.panelHeading p { margin: 8px 0 0; color: #9eaaa4; font-size: 13px; }
+.panelHeading span { flex: none; color: #9eaaa4; font-size: 12px; }
 .searchForm { display: flex; gap: 8px; margin-top: 18px; }
 .searchForm input {
   min-width: 0;
@@ -45,20 +47,38 @@
 }
 .searchForm a { align-self: center; color: #a7b2ac; font-size: 12px; }
 
-.slotCreator {
+.scheduleSettings {
   display: grid;
-  grid-template-columns: 1.4fr 1fr 1fr auto;
-  gap: 12px;
+  grid-template-columns: minmax(260px, 2fr) repeat(3, minmax(120px, 1fr)) auto;
+  gap: 14px;
   align-items: end;
   margin-top: 20px;
 }
 
-.slotCreator label,
-.loginForm label { display: flex; flex-direction: column; gap: 6px; }
-.slotCreator label span,
-.loginForm label span { color: #b5c0ba; font-size: 11px; font-weight: 700; }
-.slotCreator input,
+.scheduleSettings fieldset { min-width: 0; margin: 0; padding: 0; border: 0; }
+.scheduleSettings legend,
+.scheduleSettings > label > span,
+.loginForm label span { display: block; margin-bottom: 6px; color: #b5c0ba; font-size: 11px; font-weight: 700; }
+.weekdayChoices { display: grid; grid-template-columns: repeat(7, minmax(34px, 1fr)); gap: 5px; }
+.weekdayChoices label { cursor: pointer; }
+.weekdayChoices input { position: absolute; opacity: 0; pointer-events: none; }
+.weekdayChoices span {
+  display: grid;
+  min-height: 44px;
+  place-items: center;
+  border: 1px solid rgb(255 255 255 / 14%);
+  border-radius: 6px;
+  background: #030806;
+  color: #9eaaa4;
+  font-size: 12px;
+  font-weight: 800;
+}
+.weekdayChoices input:checked + span { border-color: rgb(46 204 113 / 60%); background: rgb(46 204 113 / 14%); color: #75e8a6; }
+.weekdayChoices input:focus-visible + span { outline: 2px solid #75e8a6; outline-offset: 2px; }
+
+.scheduleSettings select,
 .loginForm input {
+  width: 100%;
   min-height: 44px;
   padding: 9px 11px;
   border: 1px solid rgb(255 255 255 / 15%);
@@ -67,7 +87,7 @@
   color: white;
 }
 
-.slotCreator button,
+.scheduleSettings > button,
 .loginForm button {
   min-height: 44px;
   padding: 0 18px;
@@ -78,19 +98,77 @@
   font-weight: 800;
   cursor: pointer;
 }
-
-.slotCreator button:disabled,
+.scheduleSettings > button:disabled,
 .loginForm button:disabled { cursor: wait; opacity: .65; }
-.slotCreator .error,
-.slotCreator .success { grid-column: 1 / -1; }
+.scheduleNote,
+.scheduleSettings > .error,
+.scheduleSettings > .success { grid-column: 1 / -1; margin: 0; font-size: 12px; }
+.scheduleNote { color: #89968f; }
 .error { color: #ff9c9c !important; }
-.success { color: #75e8a6 !important; }
-.empty { padding: 24px 0; text-align: center; }
+.success,
+.calendarMessage { color: #75e8a6 !important; }
+.empty { padding: 24px 0; color: #9eaaa4; text-align: center; }
 
-.slotList { display: grid; gap: 10px; margin-top: 18px; }
-.slotCard {
+.calendarArea { margin-top: 20px; }
+.calendarToolbar { display: grid; grid-template-columns: auto 1fr auto; align-items: center; gap: 12px; }
+.calendarToolbar strong { text-align: center; font-size: 14px; }
+.legend { display: flex; flex-wrap: wrap; justify-content: flex-end; gap: 14px; margin: 14px 0 10px; color: #a7b2ac; font-size: 11px; }
+.legend span { display: inline-flex; align-items: center; gap: 5px; }
+.legend i { width: 10px; height: 10px; border-radius: 3px; }
+.legendOpen { background: #1d8a4b; }
+.legendClosed { background: #353d39; }
+.legendReserved { background: #8c6817; }
+
+.calendarScroller { overflow-x: auto; padding-bottom: 5px; }
+.calendarGrid {
   display: grid;
-  grid-template-columns: minmax(180px, 1fr) auto minmax(220px, 1.3fr) auto;
+  grid-template-columns: 70px repeat(7, minmax(105px, 1fr));
+  min-width: 820px;
+  gap: 4px;
+}
+.cornerCell,
+.dateHeader,
+.hourCell,
+.unavailableCell {
+  display: grid;
+  min-height: 46px;
+  place-items: center;
+  border-radius: 6px;
+  background: rgb(0 0 0 / 20%);
+  color: #9eaaa4;
+  font-size: 11px;
+}
+.dateHeader { position: sticky; top: 0; z-index: 1; color: #e7edea; font-weight: 800; }
+.hourCell { min-height: 54px; }
+.unavailableCell { min-height: 54px; color: #4f5a54; }
+.openCell,
+.closedCell,
+.reservedCell {
+  display: flex;
+  min-height: 54px;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 3px;
+  border-radius: 6px;
+  font-size: 11px;
+  font-weight: 800;
+}
+.openCell { border: 1px solid rgb(46 204 113 / 46%); background: rgb(46 204 113 / 13%); color: #75e8a6; cursor: pointer; }
+.closedCell { border: 1px solid rgb(255 255 255 / 9%); background: #202824; color: #a7b2ac; cursor: pointer; }
+.reservedCell { border: 1px solid rgb(255 193 7 / 34%); background: rgb(255 193 7 / 12%); color: #ffd45e; }
+.openCell:hover,
+.closedCell:hover { transform: translateY(-1px); filter: brightness(1.15); }
+.openCell:disabled,
+.closedCell:disabled,
+.reservedCell:disabled { cursor: not-allowed; opacity: .62; transform: none; }
+.reservedCell small { max-width: 92px; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.calendarMessage { min-height: 20px; margin: 10px 0 0; text-align: center; font-size: 12px; }
+
+.bookingList { display: grid; gap: 10px; margin-top: 18px; }
+.bookingCard {
+  display: grid;
+  grid-template-columns: minmax(180px, .8fr) minmax(240px, 1.4fr) auto;
   gap: 18px;
   align-items: center;
   padding: 16px;
@@ -98,20 +176,12 @@
   border-radius: 8px;
   background: rgb(0 0 0 / 20%);
 }
-
 .slotDate,
 .bookingDetails { display: flex; flex-direction: column; gap: 4px; }
 .slotDate span,
 .bookingDetails a,
 .bookingDetails small { color: #a7b2ac; font-size: 12px; }
 .bookingDetails a { overflow-wrap: anywhere; }
-.open,
-.reserved,
-.closed { padding: 5px 9px; border-radius: 999px; font-size: 11px; font-weight: 800; }
-.open { background: rgb(46 204 113 / 15%); color: #64dd98; }
-.reserved { background: rgb(255 193 7 / 14%); color: #ffd45e; }
-.closed { background: rgb(255 255 255 / 8%); color: #a7b2ac; }
-.actions { justify-content: flex-end; }
 
 .secondaryButton,
 .dangerButton {
@@ -123,31 +193,30 @@
   color: white;
   cursor: pointer;
 }
+.secondaryButton:disabled { cursor: not-allowed; opacity: .45; }
 .dangerButton { border-color: rgb(255 94 94 / 30%); color: #ffabab; }
 
 .loginCard { width: min(100%, 440px); margin: 10vh auto 0; }
 .loginForm { display: grid; gap: 18px; margin-top: 24px; }
+.loginForm label { display: flex; flex-direction: column; gap: 6px; }
 .backLink { display: inline-block; margin-top: 20px; color: #a7b2ac; font-size: 12px; }
 
-@media (max-width: 900px) {
-  .slotCreator { grid-template-columns: 1fr 1fr; }
-  .slotCreator label:first-child,
-  .slotCreator button { grid-column: 1 / -1; }
-  .slotCard { grid-template-columns: 1fr auto; }
-  .bookingDetails,
-  .actions { grid-column: 1 / -1; }
+@media (max-width: 1050px) {
+  .scheduleSettings { grid-template-columns: 1fr 1fr; }
+  .scheduleSettings fieldset,
+  .scheduleSettings > button { grid-column: 1 / -1; }
 }
 
-@media (max-width: 560px) {
+@media (max-width: 720px) {
   .shell { padding-block: 28px; }
-  .header { align-items: flex-start; }
-  .slotCreator { grid-template-columns: 1fr; }
-  .slotCreator label:first-child,
-  .slotCreator button { grid-column: auto; }
-  .slotCard { grid-template-columns: 1fr; }
-  .slotStatus,
-  .bookingDetails,
-  .actions { grid-column: auto; }
-  .actions { align-items: stretch; flex-direction: column; }
-  .actions button { width: 100%; }
+  .header,
+  .panelHeading { align-items: flex-start; }
+  .panel { padding: 18px; }
+  .scheduleSettings { grid-template-columns: 1fr; }
+  .scheduleSettings fieldset,
+  .scheduleSettings > button { grid-column: auto; }
+  .calendarToolbar { grid-template-columns: 1fr 1fr; }
+  .calendarToolbar strong { grid-column: 1 / -1; grid-row: 1; }
+  .bookingCard { grid-template-columns: 1fr; }
+  .bookingCard button { width: 100%; }
 }
