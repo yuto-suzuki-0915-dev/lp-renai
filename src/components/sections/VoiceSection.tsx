@@ -9,7 +9,7 @@ export default function VoiceSection() {
       <div className={styles.divider} />
       <div className={styles.inner}>
         <h2 id="voice-title" className={styles.title}><span>変わった人には、共通点がある。</span><strong>それを確かめてほしい</strong></h2>
-        <Carousel label="受講者の声">
+        <Carousel label="受講者の声" autoPlay>
           {voices.map((voice) => (
             <article key={voice.id} className={styles.card} data-carousel-item>
               <div className={styles.visual}>

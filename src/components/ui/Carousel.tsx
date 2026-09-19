@@ -3,9 +3,19 @@
 import { Children, useCallback, useEffect, useRef, useState, type KeyboardEvent, type ReactNode } from "react";
 import styles from "./Carousel.module.css";
 
-type CarouselProps = { label: string; children: ReactNode };
+type CarouselProps = {
+  label: string;
+  children: ReactNode;
+  autoPlay?: boolean;
+  autoPlayInterval?: number;
+};
 
-export default function Carousel({ label, children }: CarouselProps) {
+export default function Carousel({
+  label,
+  children,
+  autoPlay = false,
+  autoPlayInterval = 4200,
+}: CarouselProps) {
   const viewportRef = useRef<HTMLDivElement>(null);
   const total = Children.count(children);
   const [atStart, setAtStart] = useState(true);
@@ -39,14 +49,39 @@ export default function Carousel({ label, children }: CarouselProps) {
     return () => observer.disconnect();
   }, [updateControls]);
 
-  const move = (direction: -1 | 1) => {
+  const move = useCallback((direction: -1 | 1) => {
     const viewport = viewportRef.current;
     const item = viewport?.querySelector<HTMLElement>("[data-carousel-item]");
     if (!viewport || !item) return;
     const gap = Number.parseFloat(getComputedStyle(viewport).columnGap || "0");
     const reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
     viewport.scrollBy({ left: direction * (item.offsetWidth + gap), behavior: reduceMotion ? "auto" : "smooth" });
-  };
+  }, []);
+
+  useEffect(() => {
+    const viewport = viewportRef.current;
+    const reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)");
+    if (!autoPlay || !viewport || reduceMotion.matches || total <= 1) return;
+
+    const timer = window.setInterval(() => {
+      if (
+        document.hidden ||
+        viewport.matches(":hover") ||
+        viewport.contains(document.activeElement)
+      ) {
+        return;
+      }
+
+      const reachedEnd = viewport.scrollLeft + viewport.clientWidth >= viewport.scrollWidth - 6;
+      if (reachedEnd) {
+        viewport.scrollTo({ left: 0, behavior: "smooth" });
+        return;
+      }
+      move(1);
+    }, autoPlayInterval);
+
+    return () => window.clearInterval(timer);
+  }, [autoPlay, autoPlayInterval, move, total]);
 
   const handleKeyDown = (event: KeyboardEvent<HTMLDivElement>) => {
     if (event.key === "ArrowLeft") { event.preventDefault(); move(-1); }
